@@ -87,16 +87,21 @@ class HomePage extends StatelessWidget {
           // Menambahkan kategori yang bisa di-scroll ke samping
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text(
-              "Categories",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+            child: Align(
+              alignment: Alignment.centerLeft, // Mengatur teks ke kiri
+              child: Text(
+                "Categories",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+                textAlign: TextAlign
+                    .left, // Menambah textAlign untuk memastikan teks rata kiri
               ),
             ),
           ),
           SizedBox(
-            height: 100, // Tinggi untuk item kategori
+            height: 160, // Tinggi untuk item kategori
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -133,6 +138,45 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
+
+          // Di dalam class HomePage, tambahkan widget berikut setelah kategori
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Align(
+              alignment: Alignment.centerLeft, // Mengatur teks ke kiri
+              child: Text(
+                "Popular Products",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+                textAlign: TextAlign.left, // Untuk memastikan teks rata kiri
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 200, // Tinggi untuk produk populer
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  _buildPopularProduct(
+                    'assets/icons/apple.png', // Path ke gambar produk Green Apple
+                    'Green Apple',
+                    9.55,
+                    4.5, // Rating untuk produk
+                  ),
+                  _buildPopularProduct(
+                    'assets/icons/orange-juice.png', // Path ke gambar produk Orange Juice
+                    'Orange Juice',
+                    5.62,
+                    4.0, // Rating untuk produk
+                  ),
+                  // Tambahkan lebih banyak produk populer jika diperlukan
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -142,12 +186,12 @@ class HomePage extends StatelessWidget {
 // Widget untuk membuat item kategori
 Widget _buildCategoryItem(BuildContext context, String iconPath, String label) {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+    padding: const EdgeInsets.symmetric(horizontal: 12.0),
     child: Column(
       children: [
         Container(
-          width: 60,
-          height: 60,
+          width: 90,
+          height: 90,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
@@ -155,23 +199,106 @@ Widget _buildCategoryItem(BuildContext context, String iconPath, String label) {
                 width: 2), // Warna dan ketebalan border
           ),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(14.0),
             child: Image.asset(
               iconPath, // Path ke ikon SVG
               fit: BoxFit.contain,
             ),
           ),
         ),
-        const SizedBox(height: 5),
+        const SizedBox(height: 8),
         Text(
           label,
           style: const TextStyle(
-            fontSize: 12,
+            fontSize: 14,
             fontWeight: FontWeight.bold,
             color: Colors.redAccent, // Warna teks
           ),
         ),
       ],
+    ),
+  );
+}
+
+// Widget untuk membuat item popular products
+Widget _buildPopularProduct(
+    String imagePath, String productName, double price, double rating) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+    child: Container(
+      width: 180,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 10,
+            offset: const Offset(0, 5), // Bayangan untuk produk
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset(
+            imagePath,
+            height: 150, // Sesuaikan ukuran gambar produk
+            fit: BoxFit.contain,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              productName,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              '\$$price',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.redAccent,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: List.generate(5, (index) {
+                return Icon(
+                  index < rating ? Icons.star : Icons.star_border,
+                  color: Colors.orange,
+                  size: 16,
+                );
+              }),
+            ),
+          ),
+          Spacer(),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8.0, bottom: 8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.redAccent,
+                ),
+                child: IconButton(
+                  icon: Icon(Icons.add, color: Colors.white),
+                  onPressed: () {},
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     ),
   );
 }
