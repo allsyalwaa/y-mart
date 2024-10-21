@@ -14,6 +14,18 @@ class _HomePageState extends State<HomePage> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+
+      // Tambahkan navigasi berdasarkan index yang dipilih
+      if (index == 0) {
+        // Arahkan ke halaman Home
+        Navigator.pushNamed(context, '/home');
+      } else if (index == 1) {
+        // Arahkan ke halaman Cart
+        Navigator.pushNamed(context, '/cart');
+      } else if (index == 2) {
+        // Arahkan ke halaman Profile
+        Navigator.pushNamed(context, '/profile');
+      }
     });
   }
 
