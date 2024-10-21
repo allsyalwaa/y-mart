@@ -11,8 +11,7 @@ class LoginPage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment
-                  .start, // Menambahkan ini agar semua elemen sejajar ke kiri
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Gambar keranjang buah di bagian atas
                 Image.asset(
@@ -45,7 +44,8 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-// TextField untuk email
+
+                // TextField untuk email
                 TextField(
                   decoration: InputDecoration(
                     labelText: 'Email',
@@ -55,12 +55,12 @@ class LoginPage extends StatelessWidget {
                     ),
                     filled: true,
                     fillColor: Colors.grey[200],
-                    contentPadding: const EdgeInsets.all(
-                        16.0), // Tambahkan padding jika perlu
+                    contentPadding: const EdgeInsets.all(16.0),
                   ),
                 ),
                 const SizedBox(height: 20),
-// TextField untuk password
+
+                // TextField untuk password
                 TextField(
                   obscureText: true,
                   decoration: InputDecoration(
@@ -71,8 +71,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     filled: true,
                     fillColor: Colors.grey[200],
-                    contentPadding: const EdgeInsets.all(
-                        16.0), // Tambahkan padding jika perlu
+                    contentPadding: const EdgeInsets.all(16.0),
                   ),
                 ),
 
@@ -81,7 +80,8 @@ class LoginPage extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {
-                      // Aksi untuk reset password
+                      // Navigasi ke halaman forgot password
+                      Navigator.pushNamed(context, '/forgotpassword');
                     },
                     child: const Text(
                       'Forgot password?',
@@ -93,12 +93,14 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 15),
+
                 // Tombol 'Log In'
                 SizedBox(
                   width: double.infinity, // Lebar penuh sesuai layar
                   child: ElevatedButton(
                     onPressed: () {
-                      // Aksi untuk login
+                      // Navigasi ke halaman home setelah login berhasil
+                      Navigator.pushNamed(context, '/home');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.redAccent,
@@ -114,8 +116,8 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 20),
+
                 // Pembatas 'or'
                 Row(
                   children: const [
@@ -141,6 +143,7 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 20),
+
                 // Tombol 'Continue with Google'
                 SizedBox(
                   width: double.infinity, // Lebar penuh sesuai layar
@@ -180,7 +183,8 @@ class LoginPage extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          // Aksi untuk sign up
+                          // Navigasi ke halaman sign up
+                          Navigator.pushNamed(context, '/signup');
                         },
                         child: const Text(
                           'Sign Up',
