@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -193,8 +206,86 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: _buildNavBarItem(
+              'assets/icons/home.svg',
+              'Home',
+              0,
+              _selectedIndex,
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: _buildNavBarItem(
+              'assets/icons/cart.svg',
+              'Cart',
+              1,
+              _selectedIndex,
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: _buildNavBarItem(
+              'assets/icons/account.svg',
+              'Profile',
+              2,
+              _selectedIndex,
+            ),
+            label: '',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.redAccent,
+        onTap: _onItemTapped,
+      ),
     );
   }
+}
+
+Widget _buildNavBarItem(
+    String iconPath, String label, int index, int selectedIndex) {
+  bool isSelected = selectedIndex == index;
+
+  return Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      if (isSelected)
+        Container(
+          width: 40,
+          height: 3,
+          decoration: BoxDecoration(
+            color: Colors.redAccent,
+            borderRadius: BorderRadius.circular(2),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.redAccent.withOpacity(0.5),
+                blurRadius: 6,
+                offset: Offset(0, 3),
+              ),
+            ],
+          ),
+        ),
+      const SizedBox(height: 5),
+      SizedBox(
+        width: 24,
+        height: 24,
+        child: SvgPicture.asset(
+          iconPath,
+          color: isSelected ? Colors.redAccent : Colors.grey,
+        ),
+      ),
+      const SizedBox(height: 5),
+      Text(
+        label,
+        style: TextStyle(
+          fontSize: 12,
+          color: isSelected ? Colors.redAccent : Colors.grey,
+        ),
+      ),
+    ],
+  );
 }
 
 // Widget untuk membuat item kategori
@@ -280,7 +371,7 @@ Widget _buildPopularProductItem(BuildContext context, String imagePath,
                 children: [
                   Text(
                     "\$$price",
-                    style: TextStyle(fontSize: 14, color: Colors.green),
+                    style: TextStyle(fontSize: 14, color: Colors.redAccent),
                   ),
                   Row(
                     children: List.generate(5, (index) {
