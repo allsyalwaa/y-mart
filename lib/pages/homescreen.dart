@@ -46,6 +46,9 @@ class HomeScreen extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // Aksi yang akan dilakukan saat tombol 'Get Started' diklik
+                  // Navigasi ke halaman Signup atau Home
+                  Navigator.pushNamed(
+                      context, '/signup'); // Routing ke halaman SignupPage
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.redAccent,
@@ -72,6 +75,8 @@ class HomeScreen extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       // Aksi untuk login
+                      Navigator.pushNamed(
+                          context, '/login'); // Routing ke halaman LoginPage
                     },
                     child: const Text(
                       'Log In',
