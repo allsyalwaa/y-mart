@@ -14,12 +14,22 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(fontFamily: 'Poppins'),
-        home: ProfilePage());
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: 'Poppins'),
+      initialRoute: '/homescreen', // Halaman pertama yang akan dibuka
+      routes: {
+        '/homescreen': (context) => const HomeScreen(), // Halaman pertama
+        '/login': (context) => const LoginPage(), // Halaman login
+        '/signup': (context) => const SignupPage(), // Halaman signup
+        '/forgotpassword': (context) =>
+            const ForgotPassword(), // Halaman lupa password
+        '/home': (context) => const HomePage(), // Halaman home setelah login
+        '/cart': (context) => const CartPage(), // Halaman keranjang
+        '/profile': (context) => const ProfilePage(), // Halaman profil
+      },
+    );
   }
 }
