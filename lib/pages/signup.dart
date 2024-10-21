@@ -50,6 +50,7 @@ class SignupPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 20),
+
                         // TextField untuk email
                         TextField(
                           decoration: InputDecoration(
@@ -64,6 +65,7 @@ class SignupPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 20),
+
                         // TextField untuk password
                         TextField(
                           obscureText: true,
@@ -79,6 +81,7 @@ class SignupPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 20),
+
                         // TextField untuk konfirmasi password
                         TextField(
                           obscureText: true,
@@ -94,6 +97,7 @@ class SignupPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 20),
+
                         // Checkbox untuk syarat dan ketentuan
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,12 +117,14 @@ class SignupPage extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 20),
+
                         // Tombol 'Sign Up'
                         SizedBox(
                           width: double.infinity, // Lebar penuh sesuai layar
                           child: ElevatedButton(
                             onPressed: () {
-                              // Aksi untuk sign up
+                              // Navigasi ke halaman Home setelah sign up berhasil
+                              Navigator.pushNamed(context, '/home');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.redAccent,
@@ -134,6 +140,7 @@ class SignupPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 20),
+
                         // Pembatas 'or'
                         Row(
                           children: const [
@@ -159,6 +166,7 @@ class SignupPage extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 20),
+
                         // Tombol 'Continue with Google'
                         SizedBox(
                           width: double.infinity,
@@ -198,7 +206,8 @@ class SignupPage extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  // Aksi untuk login
+                                  // Navigasi ke halaman Login
+                                  Navigator.pushNamed(context, '/login');
                                 },
                                 child: const Text(
                                   'Log In',
